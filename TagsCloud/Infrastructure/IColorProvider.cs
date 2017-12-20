@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using System.Drawing;
 
-namespace TagsCloud
+namespace TagsCloud.Infrastructure
 {
     public interface IColorProvider
     {
-        Color GetColor();
+        Color Colorize(Tag tag);
     }
 }

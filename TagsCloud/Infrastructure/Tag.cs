@@ -9,12 +9,14 @@ namespace TagsCloud.Infrastructure
 {
     public class Tag
     {
-        public Rectangle Place;
+        public readonly Size Size;
 
-        public string Word;
+        public readonly string Word;
 
-        public Font Font;
-
-        public Color Color;
+        public Tag(Size size, string word)
+        {
+            this.Size = size;
+            this.Word = word;
+        }
     }
 }

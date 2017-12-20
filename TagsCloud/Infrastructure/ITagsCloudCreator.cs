@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TagsCloud.Tool
+namespace TagsCloud.Infrastructure
 {
     public interface ITagsCloudCreator
     {
-        Bitmap Create();
+        Bitmap Create(IEnumerable<string> words, IPaintingSettings settings, ITagLayouter layouter);
     }
 }

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TagsCloud
+namespace TagsCloud.Infrastructure
 {
-    public interface IFontProvider
+    public interface ITagLayouter
     {
-        Font GetFont();
+        IEnumerable<Tuple<Tag, Point>> LayoutTags(IEnumerable<Tag> tags);
     }
 }

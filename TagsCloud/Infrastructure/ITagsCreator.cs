@@ -8,6 +8,6 @@ namespace TagsCloud.Infrastructure
 {
     public interface ITagsCreator
     {
-        IEnumerable<Tag> CreateTags(IEnumerable<string> words);
+        IEnumerable<Tag> CreateTags(IEnumerable<string> words, int maxCount = 100);
     }
 }

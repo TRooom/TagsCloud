@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TagsCloud.Infrastructure
 {
-    public interface IWordSelector
+    public interface IPaintingSettings
     {
-        IEnumerable<string> Select(IEnumerable<string> words);
+        Font Font { get; }
+        IColorProvider ColorProvider { get; }
+        Size ImageSize { get; }
     }
 }
