@@ -8,6 +8,7 @@ namespace TagsCloud.Infrastructure
 {
     public interface IWordReader
     {
-        IEnumerable<string> ReadWords(string path);
+        IEnumerable<string> ReadWords();
+        string Path { get; set; }
     }
 }

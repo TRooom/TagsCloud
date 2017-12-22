@@ -31,10 +31,9 @@ namespace ConsoleTagsCloud.Aplication
         {
             var options = AskOptions();
             var settings = GetSettings(options);
-            var words = reader.ReadWords(options.InputFile);
-            words = processor.ProcessWords(words);
-            var image = creator.Create(words, settings,
-                new CircularCloudLayouter(new Point(0, 0), options.Factor, options.Step));
+            reader.Path = options.InputFile;
+            processor.AddExcludingRule(x => x.Length <= 3);
+            var image = creator.Create(settings);
             SaveImage(image, options.OutputFile);
         }
 

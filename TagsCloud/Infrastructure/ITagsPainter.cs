@@ -9,6 +9,6 @@ namespace TagsCloud.Infrastructure
 {
     public interface ITagsPainter
     {
-        Bitmap DrawTagsCloud(IEnumerable<PlacedTag> placedTags, IPaintingSettings settings);
+        Bitmap DrawTagsCloud(IPaintingSettings settings);
     }
 }

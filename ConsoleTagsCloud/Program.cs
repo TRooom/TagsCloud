@@ -27,8 +27,12 @@ namespace ConsoleTagsCloud
             container.Register(Component.For<IImageSaver>().ImplementedBy<SimpleImageSaver>());
             container.Register(Component.For<IWordReader>().ImplementedBy<SimpleWordReaders>());
             container.Register(Component.For<IWordProcessor>().ImplementedBy<SimpleWordProcessor>());
-            container.Register(Component.For<ITagsCreator>().ImplementedBy<SimpleTagsCreator>());
+
             container.Register(Component.For<ITagsPainter>().ImplementedBy<SimpleTagsPainter>());
+            container.Register(Component.For<ITagLayouter>().ImplementedBy<CircularCloudLayouter>());
+
+            container.Register(Component.For<ITagsCreator>().ImplementedBy<SimpleTagsCreator>());
+            
 
             return container.Resolve<ConsoleTagsCloudCreator>();
         }

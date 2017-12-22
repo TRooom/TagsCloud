@@ -14,12 +14,14 @@ namespace TagsCloud.Tool
         private List<Rectangle> addedRectangles;
         private Spiral spiral;
         private readonly Point center;
+        private readonly ITagsCreator creator;
 
-        public CircularCloudLayouter(Point center, double fator = 2, double step = 0.01)
+        public CircularCloudLayouter(ITagsCreator creator, Point center = default(Point))
         {
             addedRectangles = new List<Rectangle>();
-            spiral = new Spiral(center, fator, step);
+            spiral = new Spiral(center);
             this.center = center;
+            this.creator = creator;
         }
 
         public Rectangle PutNextRectangle(Size rectangleSize)
@@ -37,11 +39,12 @@ namespace TagsCloud.Tool
             return addedRectangles.All(addedRec => !addedRec.IntersectsWith(rect));
         }
 
-        public IEnumerable<Tuple<Tag, Point>> LayoutTags(IEnumerable<Tag> tags)
+        public IEnumerable<PlacedTag> LayoutTags()
         {
             addedRectangles = new List<Rectangle>();
             spiral = new Spiral(center);
-            var placed = tags.Select(x => Tuple.Create(x, PutNextRectangle(x.Size).Location)).ToList();
+            var tags = creator.CreateTags();
+            var placed = tags.Select(x => new PlacedTag(x, PutNextRectangle(x.Size).Location)).ToList();
             return placed;
         }
     }

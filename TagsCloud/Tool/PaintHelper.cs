@@ -45,7 +45,7 @@ namespace TagsCloud.Tool
                 if (Math.Abs(rectangle.Left) > width)
                     width = Math.Abs(rectangle.Left);
             }
-            return new Size((width + 1) * 2, (height + 1) * 2);
+            return new Size(width * 2, height * 2);
         }
 
         public static int TryFindEmSize(Size bound, string str, string fontName, Graphics g)

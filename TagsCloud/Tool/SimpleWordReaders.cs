@@ -10,9 +10,19 @@ namespace TagsCloud.Tool
 {
     public class SimpleWordReaders : IWordReader
     {
-        public IEnumerable<string> ReadWords(string path)
+        private readonly IWordProcessor processor;
+
+        public string Path { get; set; }
+
+        public SimpleWordReaders(IWordProcessor processor)
         {
-            return File.ReadAllLines(path).Select(x => x.Trim());
+            this.processor = processor;
+        }
+
+        public IEnumerable<string> ReadWords()
+        {
+            var words = File.ReadAllLines(Path).Select(x => x.Trim());
+            return processor.ProcessWords(words);
         }
     }
 }

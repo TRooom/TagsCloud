@@ -9,6 +9,6 @@ namespace TagsCloud.Infrastructure
 {
     public interface ITagsCloudCreator
     {
-        Bitmap Create(IEnumerable<string> words, IPaintingSettings settings, ITagLayouter layouter);
+        Bitmap Create(IPaintingSettings settings);
     }
 }

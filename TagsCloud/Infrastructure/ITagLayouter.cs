@@ -9,6 +9,6 @@ namespace TagsCloud.Infrastructure
 {
     public interface ITagLayouter
     {
-        IEnumerable<PlacedTag> LayoutTags(IEnumerable<Tag> tags);
+        IEnumerable<PlacedTag> LayoutTags();
     }
 }

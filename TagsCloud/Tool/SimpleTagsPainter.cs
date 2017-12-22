@@ -11,12 +11,21 @@ namespace TagsCloud.Tool
 {
     public class SimpleTagsPainter : ITagsPainter
     {
-        public Bitmap DrawTagsCloud(IEnumerable<PlacedTag> placedTags, IPaintingSettings settings)
+        private readonly ITagLayouter layouter;
+
+        public SimpleTagsPainter(ITagLayouter layouter)
         {
+            this.layouter = layouter;
+        }
+
+        public Bitmap DrawTagsCloud(IPaintingSettings settings)
+        {
+            var placedTags = layouter.LayoutTags();
             var actualSize =
                 PaintHelper.CalculateImageSize(placedTags.Select(PaintHelper.ToRect));
             var image = new Bitmap(settings.ImageSize.Height, settings.ImageSize.Width);
             var g = Graphics.FromImage(image);
+            g.SmoothingMode = SmoothingMode.HighQuality;
             var offset = PaintHelper.CalculateCenterLocation(actualSize);
             foreach (var placedTag in placedTags)
             {

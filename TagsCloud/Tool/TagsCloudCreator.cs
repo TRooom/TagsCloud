@@ -10,20 +10,16 @@ namespace TagsCloud.Tool
 {
     public class TagsCloudCreator : ITagsCloudCreator
     {
-        private readonly ITagsCreator tagsCreator;
         private readonly ITagsPainter painter;
 
-        public TagsCloudCreator(ITagsCreator creator, ITagsPainter painter)
+        public TagsCloudCreator(ITagsPainter painter)
         {
-            this.tagsCreator = creator;
             this.painter = painter;
         }
 
-        public Bitmap Create(IEnumerable<string> words, IPaintingSettings settings, ITagLayouter layouter)
+        public Bitmap Create(IPaintingSettings settings)
         {
-            var tags = tagsCreator.CreateTags(words);
-            var placedTags = layouter.LayoutTags(tags);
-            var image = painter.DrawTagsCloud(placedTags, settings);
+            var image = painter.DrawTagsCloud(settings);
             return image;
         }
     }
