@@ -65,10 +65,10 @@ namespace TagsCloud.Tool
             return inner.Width <= outer.Width && inner.Height < outer.Height;
         }
 
-        public static Rectangle ToRect(Tuple<Tag, Point> placedTag)
+        public static Rectangle ToRect(PlacedTag placedTag)
         {
-            var loc = placedTag.Item2;
-            var size = placedTag.Item1.Size;
+            var loc = placedTag.Location;
+            var size = placedTag.Tag.Size;
             return new Rectangle(loc, size);
         }
     }
