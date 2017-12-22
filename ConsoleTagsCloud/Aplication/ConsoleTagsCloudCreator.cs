@@ -29,7 +29,9 @@ namespace ConsoleTagsCloud.Aplication
 
         public void Run()
         {
-            var options = AskOptions();
+            Options options = null;
+            while (options == null)
+                options = AskOptions();
             var settings = GetSettings(options);
             reader.Path = options.InputFile;
             processor.AddExcludingRule(x => x.Length <= 3);
@@ -41,8 +43,10 @@ namespace ConsoleTagsCloud.Aplication
         {
             Console.WriteLine($"> Enter settings");
             var args = Console.ReadLine().Split(' ');
-            var options = Parser.Default.ParseArguments<Options>(args).Value;
-            return options;
+
+            var options = new Options();
+
+            return Parser.Default.ParseArguments(args, options) ? options : null;
         }
 
         private IPaintingSettings GetSettings(Options options)
