@@ -10,9 +10,9 @@ namespace TagsCloud.Tool
 {
     public static class PaintHelper
     {
-        public static Point CalculateCenterLocation(Size actualSize)
+        public static Point CalculateCenterLocation(Size size)
         {
-            var offset = new Point(actualSize.Width / 2, actualSize.Height / 2);
+            var offset = new Point(size.Width / 2, size.Height / 2);
             return offset;
         }
 
@@ -48,7 +48,7 @@ namespace TagsCloud.Tool
             return new Size(width * 2, height * 2);
         }
 
-        public static int TryFindEmSize(Size bound, string str, string fontName, Graphics g)
+        public static int FindFontSize(Size bound, string str, string fontName, Graphics g)
         {
             var emSize = 1;
             var updated = new Font(fontName, emSize);

@@ -22,8 +22,10 @@ namespace TagsCloud.Tests
         [SetUp]
         public void SetUp()
         {
+            var processor = new SimpleWordProcessor();
             reader = Substitute.For<IWordReader>();
-            creator = new SimpleTagsCreator(reader);
+            var provider = new SimpleWordProvider(reader, processor);
+            creator = new SimpleTagsCreator(provider);
         }
 
         [Test]

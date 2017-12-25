@@ -8,21 +8,14 @@ using TagsCloud.Infrastructure;
 
 namespace TagsCloud.Tool
 {
-    public class SimpleWordReaders : IWordReader
+    public class SimpleWordReader : IWordReader
     {
-        private readonly IWordProcessor processor;
-
         public string Path { get; set; }
-
-        public SimpleWordReaders(IWordProcessor processor)
-        {
-            this.processor = processor;
-        }
 
         public IEnumerable<string> ReadWords()
         {
             var words = File.ReadAllLines(Path).Select(x => x.Trim());
-            return processor.ProcessWords(words);
+            return words;
         }
     }
 }

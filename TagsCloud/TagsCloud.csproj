@@ -78,6 +78,7 @@
     <Compile Include="Infrastructure\IImageSaver.cs" />
     <Compile Include="Infrastructure\ITagsCreator.cs" />
     <Compile Include="Infrastructure\ITagsPainter.cs" />
+    <Compile Include="Infrastructure\IWordProvider.cs" />
     <Compile Include="Infrastructure\IWordReader.cs" />
     <Compile Include="Infrastructure\IWordProcessor.cs" />
     <Compile Include="Infrastructure\PlacedTag.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\PaintHelper_Should.cs" />
     <Compile Include="Tests\SimpleTagsCreator_Should.cs" />
+    <Compile Include="Tests\WordProcessor_Shoud.cs" />
     <Compile Include="Tool\CircularCloudLayouter.cs" />
     <Compile Include="Tool\PaintHelper.cs" />
     <Compile Include="Tool\PaintingSettings.cs" />
@@ -94,7 +96,8 @@
     <Compile Include="Tool\SimpleTagsCreator.cs" />
     <Compile Include="Tool\SimpleTagsPainter.cs" />
     <Compile Include="Tool\SimpleWordProcessor.cs" />
-    <Compile Include="Tool\SimpleWordReaders.cs" />
+    <Compile Include="Tool\SimpleWordProvider.cs" />
+    <Compile Include="Tool\SimpleWordReader.cs" />
     <Compile Include="Tool\Spiral.cs" />
     <Compile Include="Tool\TagsCloudCreator.cs" />
   </ItemGroup>

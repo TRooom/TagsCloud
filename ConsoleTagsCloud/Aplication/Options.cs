@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
+using CommandLine.Text;
 
 namespace ConsoleTagsCloud
 {
@@ -36,7 +37,14 @@ namespace ConsoleTagsCloud
         [Option('s', "step", Required = false, DefaultValue = 0.01)]
         public double Step { get; set; }
 
-        [Option('f', "factor", Required = false, DefaultValue = 2)]
+        [Option('m', "multiper", Required = false, DefaultValue = 2)]
         public double Factor { get; set; }
+
+        [HelpOption]
+        public string GetUsage()
+        {
+            return HelpText.AutoBuild(this,
+                current => HelpText.DefaultParsingErrorsHandler(this, current));
+        }
     }
 }

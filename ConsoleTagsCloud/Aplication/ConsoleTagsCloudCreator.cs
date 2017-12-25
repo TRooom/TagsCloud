@@ -29,9 +29,9 @@ namespace ConsoleTagsCloud.Aplication
 
         public void Run()
         {
-            Options options = null;
-            while (options == null)
-                options = AskOptions();
+            var options = AskOptions();
+            if (options == null)
+                return;
             var settings = GetSettings(options);
             reader.Path = options.InputFile;
             processor.AddExcludingRule(x => x.Length <= 3);
@@ -54,7 +54,7 @@ namespace ConsoleTagsCloud.Aplication
             var settings = new PaintingSettings
             {
                 Font = new Font(options.Font, 1),
-                ColorProvider = options.Colors.Any()
+                ColorProvider = options.Colors != null
                     ? (IColorProvider) new SimpleColorProvider(options.Colors)
                     : new RandomColorProvider(),
                 ImageSize = new Size(options.Width, options.Height)

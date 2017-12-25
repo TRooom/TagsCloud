@@ -34,7 +34,7 @@ namespace TagsCloud.Tool
                 var newL = new Point(location.X + offset.X, location.Y + offset.Y);
                 var rect = new Rectangle(newL, tag.Size);
                 var fontName = settings.Font.Name;
-                var emSize = PaintHelper.TryFindEmSize(rect.Size, tag.Word, fontName, g);
+                var emSize = PaintHelper.FindFontSize(rect.Size, tag.Word, fontName, g);
                 g.DrawString(tag.Word, new Font(fontName, emSize),
                     new SolidBrush(settings.ColorProvider.Colorize(tag)), rect);
             }

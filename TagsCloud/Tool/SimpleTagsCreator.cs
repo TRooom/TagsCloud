@@ -12,16 +12,16 @@ namespace TagsCloud.Tool
     {
         public readonly Size DefaultSize = new Size(100, 50);
 
-        private readonly IWordReader reader;
+        private readonly IWordProvider provider;
 
-        public SimpleTagsCreator(IWordReader reader)
+        public SimpleTagsCreator(IWordProvider provider)
         {
-            this.reader = reader;
+            this.provider = provider;
         }
 
         public IEnumerable<Tag> CreateTags(int maxCount = 100)
         {
-            var words = reader.ReadWords();
+            var words = provider.GetWords();
             var statistic = GetFrequecncy(words).OrderByDescending(x => x.Value).Take(maxCount).ToList();
             foreach (var stat in statistic)
             {
