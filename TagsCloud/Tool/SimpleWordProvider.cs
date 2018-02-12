@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TagsCloud.Infrastructure;
+using TagsCloud.Tool.ResultOf;
 
 namespace TagsCloud.Tool
 {
@@ -18,7 +19,7 @@ namespace TagsCloud.Tool
             this.processor = processor;
         }
 
-        public IEnumerable<string> GetWords()
+        public Result<IEnumerable<string>> GetWords()
         {
             return processor.ProcessWords(reader.ReadWords());
         }

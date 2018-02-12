@@ -4,11 +4,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TagsCloud.Tool.ResultOf;
 
 namespace TagsCloud.Infrastructure
 {
     public interface ITagsPainter
     {
-        Bitmap DrawTagsCloud(IPaintingSettings settings);
+        Result<Bitmap> DrawTagsCloud(IPaintingSettings settings);
     }
 }

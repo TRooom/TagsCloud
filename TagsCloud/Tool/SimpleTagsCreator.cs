@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TagsCloud.Infrastructure;
+using TagsCloud.Tool.ResultOf;
 
 namespace TagsCloud.Tool
 {
@@ -19,9 +20,16 @@ namespace TagsCloud.Tool
             this.provider = provider;
         }
 
-        public IEnumerable<Tag> CreateTags(int maxCount = 100)
+        public Result<IEnumerable<Tag>> CreateTags(int maxCount = 100)
         {
-            var words = provider.GetWords();
+            var result = provider.GetWords();
+            return !result.IsSuccess ?
+                Result.Fail<IEnumerable<Tag>>(result.Error) :
+                Result.Ok(CreateTags(maxCount, result.Value));
+        }
+
+        private IEnumerable<Tag> CreateTags(int maxCount, IEnumerable<string> words)
+        {
             var statistic = GetFrequecncy(words).OrderByDescending(x => x.Value).Take(maxCount).ToList();
             foreach (var stat in statistic)
             {

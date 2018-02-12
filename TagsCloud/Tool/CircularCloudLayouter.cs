@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using TagsCloud.Infrastructure;
+using TagsCloud.Tool.ResultOf;
 
 namespace TagsCloud.Tool
 {
@@ -39,13 +40,15 @@ namespace TagsCloud.Tool
             return addedRectangles.All(addedRec => !addedRec.IntersectsWith(rect));
         }
 
-        public IEnumerable<PlacedTag> LayoutTags()
+        public Result<IEnumerable<PlacedTag>> LayoutTags()
         {
             addedRectangles = new List<Rectangle>();
             spiral = new Spiral(center);
-            var tags = creator.CreateTags();
-            var placed = tags.Select(x => new PlacedTag(x, PutNextRectangle(x.Size).Location)).ToList();
-            return placed;
+            var result = creator.CreateTags();
+            if (!result.IsSuccess)
+                return Result.Fail<IEnumerable<PlacedTag>>(result.Error);
+            var tags = result.Value;
+            return tags.Select(x => new PlacedTag(x, PutNextRectangle(x.Size).Location)).ToList();
         }
     }
 }

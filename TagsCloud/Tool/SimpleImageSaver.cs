@@ -6,14 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TagsCloud.Infrastructure;
+using TagsCloud.Tool.ResultOf;
 
 namespace TagsCloud.Tool
 {
     public class SimpleImageSaver :IImageSaver
     {
-        public void SaveImage(Bitmap image, ImageFormat format, string filename)
+        public Result<None> SaveImage(Bitmap image, ImageFormat format, string filename)
         {
-            image.Save(filename,format);
+            return Result.OfAction(() =>image.Save(filename,format), null);
         }
     }
 }

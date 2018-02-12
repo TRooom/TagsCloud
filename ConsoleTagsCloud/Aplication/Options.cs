@@ -39,12 +39,5 @@ namespace ConsoleTagsCloud
 
         [Option('m', "multiper", Required = false, DefaultValue = 2)]
         public double Factor { get; set; }
-
-        [HelpOption]
-        public string GetUsage()
-        {
-            return HelpText.AutoBuild(this,
-                current => HelpText.DefaultParsingErrorsHandler(this, current));
-        }
     }
 }

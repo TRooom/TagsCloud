@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions.Common;
 using TagsCloud.Infrastructure;
+using TagsCloud.Tool.ResultOf;
 
 namespace TagsCloud.Tool
 {
@@ -12,10 +14,10 @@ namespace TagsCloud.Tool
     {
         public string Path { get; set; }
 
-        public IEnumerable<string> ReadWords()
+        public Result<IEnumerable<string>> ReadWords()
         {
-            var words = File.ReadAllLines(Path).Select(x => x.Trim());
-            return words;
+            var file = Directory.GetFiles(Directory.GetCurrentDirectory());
+            return Result.Of(() => File.ReadAllLines(Path).Select(x => x.Trim()));
         }
     }
 }

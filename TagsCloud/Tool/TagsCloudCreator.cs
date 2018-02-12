@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TagsCloud.Infrastructure;
+using TagsCloud.Tool.ResultOf;
 
 namespace TagsCloud.Tool
 {
@@ -17,10 +18,9 @@ namespace TagsCloud.Tool
             this.painter = painter;
         }
 
-        public Bitmap Create(IPaintingSettings settings)
+        public Result<Bitmap> Create(IPaintingSettings settings)
         {
-            var image = painter.DrawTagsCloud(settings);
-            return image;
+            return painter.DrawTagsCloud(settings);
         }
     }
 }

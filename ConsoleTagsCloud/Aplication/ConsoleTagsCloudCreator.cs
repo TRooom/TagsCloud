@@ -35,8 +35,11 @@ namespace ConsoleTagsCloud.Aplication
             var settings = GetSettings(options);
             reader.Path = options.InputFile;
             processor.AddExcludingRule(x => x.Length <= 3);
-            var image = creator.Create(settings);
-            SaveImage(image, options.OutputFile);
+            var result = creator.Create(settings);
+            if (result.IsSuccess)
+                SaveImage(result.GetValueOrThrow(), options.OutputFile);
+            else
+                Console.WriteLine(result.Error);
         }
 
         private Options AskOptions()
@@ -45,8 +48,8 @@ namespace ConsoleTagsCloud.Aplication
             var args = Console.ReadLine().Split(' ');
 
             var options = new Options();
-
-            return Parser.Default.ParseArguments(args, options) ? options : null;
+            var foo = Parser.Default.ParseArguments<Options>(args);
+            return foo.Value ?? null;
         }
 
         private IPaintingSettings GetSettings(Options options)

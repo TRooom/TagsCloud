@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Drawing;
+using TagsCloud.Tool.ResultOf;
 
 namespace TagsCloud.Infrastructure
 {

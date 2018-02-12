@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TagsCloud.Infrastructure;
+using TagsCloud.Tool.ResultOf;
 
 namespace TagsCloud.Tool
 {
@@ -24,11 +25,17 @@ namespace TagsCloud.Tool
             excluded.Add(boringWords);
         }
 
-        public IEnumerable<string> ProcessWords(IEnumerable<string> words)
+        public Result<IEnumerable<string>> ProcessWords(Result<IEnumerable<string>> result)
         {
-            return words.Where(word =>
-                    !(string.IsNullOrEmpty(word) || string.IsNullOrWhiteSpace(word) || IsExcluded(word)))
-                .Select(word => Convertion(word.Trim().ToLower()));
+            if (!result.IsSuccess)
+                return Result.Fail<IEnumerable<string>>(result.Error);
+            var words = result.Value;
+            return Result.Of(() => words
+                .Where(word =>
+                    !(string.IsNullOrEmpty(word) ||
+                      string.IsNullOrWhiteSpace(word) ||
+                      IsExcluded(word)))
+                .Select(word => Convertion(word.Trim().ToLower())));
         }
 
         private bool IsExcluded(string word)
